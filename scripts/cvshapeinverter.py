@@ -1,4 +1,5 @@
 """@brief Inverts a shape through the deformation chain
+A
 @author Chad Vernon - chadvernon@gmail.com - www.chadvernon.com
 
 Example usage:
@@ -125,8 +126,8 @@ def get_shape(node, intermediate=False):
             raise RuntimeError, '%s has no shape' % node
         for shape in shapes:
             is_intermediate = cmds.getAttr('%s.intermediateObject' % shape)
-            if intermediate and is_intermediate and cmds.listConnections('%s.worldMesh' % shape,
-                                                                         source=False):
+            if intermediate and is_intermediate and len(cmds.listConnections(shape,
+                                                                         source=False)) > 0:
                 return shape
             elif not intermediate and not is_intermediate:
                 return shape
